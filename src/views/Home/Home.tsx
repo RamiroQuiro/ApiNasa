@@ -4,14 +4,14 @@ import Header from "../../components/Header/Header";
 import { API_KEY, fechitng, URI } from "../../utils/fetchs";
 import TodayImages from "../../components/TodayImages/TodayImages";
 import { PostImage } from "../../types";
-import { format } from "date-fns";
+import { format, sub } from "date-fns";
 export default function Home() {
   const [datos, setDatos] = useState<PostImage>({});
 
   useEffect(() => {
     const fetcheo = async () => {
       try {
-        const todayImage = await fechitng(URI, API_KEY);
+        const todayImage = await fechitng();
         setDatos(todayImage);
       } catch (error) {
         console.log(error);
@@ -20,23 +20,25 @@ export default function Home() {
 
     fetcheo().catch(null);
 
-    const loadLastDaysImages=()=>{
+    const loadLastDaysImages = async() => {
       try {
-        const date=new Date();
-        const todaysDate=format(date,'yyyy-MM-dd')
-      } catch (error) {
-        console.log(error)
-      }
-    }
+        const date = new Date();
+        const todaysDate = format(date, "yyyy-MM-dd");
+        const fiveDaysAgoDate = format(sub(date, { days: 5 }), "yyyy-MM-dd");
 
+        const lastFiveDaysImagesResponse=await fechitng(`&start_date=${fiveDaysAgoDate}&end_date=${todaysDate}`)
+        console.log(lastFiveDaysImagesResponse)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    loadLastDaysImages();
   }, []);
 
-
-  console.log(datos)
   return (
     <View style={style.container}>
       <Header />
-      <TodayImages {...datos}/>
+      <TodayImages {...datos} />
     </View>
   );
 }
