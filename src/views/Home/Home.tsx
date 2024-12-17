@@ -7,6 +7,7 @@ import { PostImage } from "../../types";
 import { format, sub } from "date-fns";
 export default function Home() {
   const [datos, setDatos] = useState<PostImage>({});
+  const [lasteFiveImages, setLasteFiveImages] = useState<PostImage[]>([])
 
   useEffect(() => {
     const fetcheo = async () => {
@@ -27,7 +28,7 @@ export default function Home() {
         const fiveDaysAgoDate = format(sub(date, { days: 5 }), "yyyy-MM-dd");
 
         const lastFiveDaysImagesResponse=await fechitng(`&start_date=${fiveDaysAgoDate}&end_date=${todaysDate}`)
-        console.log(lastFiveDaysImagesResponse)
+        setLasteFiveImages(lastFiveDaysImagesResponse)
       } catch (error) {
         console.log(error);
       }
