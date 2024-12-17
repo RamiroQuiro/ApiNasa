@@ -2,20 +2,33 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Header from "../../components/Header/Header";
 import { API_KEY, fechitng, URI } from "../../utils/fetchs";
+import TodayImages from "../../components/TodayImages/TodayImages";
+import { PostImage } from "../../types";
+import { format } from "date-fns";
 export default function Home() {
-  const [datos, setDatos] = useState(String);
+  const [datos, setDatos] = useState<PostImage>({});
 
   useEffect(() => {
     const fetcheo = async () => {
       try {
         const todayImage = await fechitng(URI, API_KEY);
-        setDatos(todayImage.hdurl);
+        setDatos(todayImage);
       } catch (error) {
         console.log(error);
       }
     };
 
     fetcheo().catch(null);
+
+    const loadLastDaysImages=()=>{
+      try {
+        const date=new Date();
+        const todaysDate=format(date,'yyyy-MM-dd')
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
   }, []);
 
 
@@ -23,6 +36,7 @@ export default function Home() {
   return (
     <View style={style.container}>
       <Header />
+      <TodayImages {...datos}/>
     </View>
   );
 }

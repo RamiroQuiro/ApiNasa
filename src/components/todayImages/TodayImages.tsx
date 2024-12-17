@@ -1,12 +1,52 @@
 import React from "react";
-import { View,Text } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 
-export default function TodayImages() {
+import { PostImage } from "../../types/index";
+
+export default function TodayImages({ date, title, url }: PostImage) {
+  console.log("este en el componente Today", url);
   return (
-    <View>
-      <Text>
-        Todays Images
-      </Text>
+    <View style={style.container}>
+      <View style={style.imageContainer}>
+        <Image source={{ uri: url }} style={style.image} />
+      </View>
+      <View>
+        <Text style={style.title}>{title}</Text>
+        <Text style={style.text}>{date}</Text>
+      </View>
     </View>
   );
 }
+
+const style = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    backgroundColor: "#2c449d",
+    padding: 15,
+    borderRadius: 30,
+    marginVertical: 20,
+  },
+  imageContainer: {
+    padding: 5,
+    borderRadius: 32,
+    width: 300,
+    height: 200,
+  },
+  image: {
+    borderWidth: 2,
+    borderColor: "white",
+    width: "100%",
+    height: 190,
+    borderRadius: 30,
+  },
+  title: {
+    fontSize: 25,
+    color: "white",
+    fontWeight: "semibold",
+    marginVertical: 10,
+  },
+  text: {
+    color: "#fff",
+    fontSize: 16,
+  },
+});
