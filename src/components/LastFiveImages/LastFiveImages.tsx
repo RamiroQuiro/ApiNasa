@@ -1,16 +1,36 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 
-function LastFiveImages(props) {
+import React, { FC } from 'react'
+import { PostImage } from '../../types'
+
+const LastFiveImages: FC<PostImage[]> = (postImage) => {
+
   return (
-    <View>
+    <View style={style.container}>
+      <Text style={style.title}>
+        hola
+      </Text>
+      <ScrollView style={style.contenedor}>
 
-         
+      </ScrollView>
     </View>
   )
 }
 
-LastFiveImages.propTypes = {}
-
 export default LastFiveImages
+
+
+const style=StyleSheet.create({
+  container:{
+flex:1,
+marginVertical:8,
+
+backgroundColor:'green'
+  },
+  title:{
+    color:'#fff',
+    fontSize:16,
+    marginBottom:18
+  },
+  contenedor:{}
+})

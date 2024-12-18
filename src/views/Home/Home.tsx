@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Header from "../../components/Header/Header";
 import { API_KEY, fechitng, URI } from "../../utils/fetchs";
-import TodayImages from "../../components/TodayImages/TodayImages";
 import { PostImage } from "../../types";
 import { format, sub } from "date-fns";
+import LastFiveImages from "../../components/LastFiveImages/LastFiveImages";
+import TodayImages from "../../components/todayImages/TodayImages";
 export default function Home() {
   const [datos, setDatos] = useState<PostImage>({});
   const [lasteFiveImages, setLasteFiveImages] = useState<PostImage[]>([])
@@ -40,6 +41,7 @@ export default function Home() {
     <View style={style.container}>
       <Header />
       <TodayImages {...datos} />
+      <LastFiveImages {...lasteFiveImages}/>
     </View>
   );
 }
