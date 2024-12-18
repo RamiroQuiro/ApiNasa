@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Header from "../../components/Header/Header";
 import { API_KEY, fechitng, URI } from "../../utils/fetchs";
 import { PostImage } from "../../types";
 import { format, sub } from "date-fns";
 import LastFiveImages from "../../components/LastFiveImages/LastFiveImages";
-import TodayImages from "../../components/todayImages/TodayImages";
+import Header from "../../components/Header/Header";
+import TodayImages from "../../components/TodayImages/TodayImages";
 export default function Home() {
   const [datos, setDatos] = useState<PostImage>({});
   const [lasteFiveImages, setLasteFiveImages] = useState<PostImage[]>([])
@@ -41,7 +41,7 @@ export default function Home() {
     <View style={style.container}>
       <Header />
       <TodayImages {...datos} />
-      <LastFiveImages {...lasteFiveImages}/>
+      <LastFiveImages postImage={lasteFiveImages}/>
     </View>
   );
 }
@@ -50,5 +50,6 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
+    backgroundColor: "rgba(18,39,113,255)",
   },
 });

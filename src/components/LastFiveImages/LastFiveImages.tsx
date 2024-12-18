@@ -1,36 +1,36 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { PostImage as typePostImage} from "../../types";
+import { FC } from "react";
+import { PostImages } from "../PostImage/PostImages";
 
-import React, { FC } from 'react'
-import { PostImage } from '../../types'
+const LastFiveImages: FC<typePostImage[]> = ({postImage}) => {
 
-const LastFiveImages: FC<PostImage[]> = (postImage) => {
-
+    
   return (
     <View style={style.container}>
-      <Text style={style.title}>
-        hola
-      </Text>
-      <ScrollView style={style.contenedor}>
-
+      <Text style={style.title}>Ultimos 5 Dias</Text>
+      <ScrollView style={style.contenedor}> 
+        {
+            postImage?.map((post:typePostImage,i:any)=>(
+                    <PostImages {...post}  key={i}/>
+            ))
+        }
       </ScrollView>
     </View>
-  )
-}
+  );
+};
 
-export default LastFiveImages
+export default LastFiveImages;
 
-
-const style=StyleSheet.create({
-  container:{
-flex:1,
-marginVertical:8,
-
-backgroundColor:'green'
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginVertical: 8,
   },
-  title:{
-    color:'#fff',
-    fontSize:16,
-    marginBottom:18
+  title: {
+    color: "#fff",
+    fontSize: 16,
+    marginBottom: 18,
   },
-  contenedor:{}
-})
+  contenedor: {},
+});

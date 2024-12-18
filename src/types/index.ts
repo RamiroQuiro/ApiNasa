@@ -1,3 +1,5 @@
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
 export type PostImage = {
   date?: string;
   explanation?: string;
@@ -7,3 +9,11 @@ export type PostImage = {
   title?: string;
   url?: string;
 };
+
+
+export type RootStackParams={
+  Home:undefined,
+  Detail:PostImage
+}
+
+export type PostImageNavigationProps=NativeStackNavigationProp<RootStackParams,'Detail'>

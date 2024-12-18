@@ -1,7 +1,5 @@
-import React, { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import nasaLogo from "../../../assets/nasaLogo.png";
-import { API_KEY, fechitng, URI } from "../../utils/fetchs";
 
 const staticInfo = {
   name: "Ramiro Quiroga",

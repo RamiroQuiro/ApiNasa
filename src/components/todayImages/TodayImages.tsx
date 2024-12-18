@@ -1,10 +1,17 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Button } from "react-native";
 
-import { PostImage } from "../../types/index";
+import { PostImage, PostImageNavigationProps } from "../../types/index";
+import { useNavigation } from "@react-navigation/native";
 
-export default function TodayImages({ date, title, url }: PostImage) {
-  console.log("este en el componente Today", url);
+export default function TodayImages({ date, title, url ,explanation}: PostImage) {
+  const {navigate}=useNavigation<PostImageNavigationProps>()
+
+
+  const handleViewPress=()=>{
+    navigate('Detail',{url,date,title,explanation})
+  }
+  
   return (
     <View style={style.container}>
       <View style={style.imageContainer}>
@@ -13,6 +20,9 @@ export default function TodayImages({ date, title, url }: PostImage) {
       <View>
         <Text style={style.title}>{title}</Text>
         <Text style={style.text}>{date}</Text>
+      </View>
+      <View>
+        <Button title="View more" onPress={handleViewPress}/>
       </View>
     </View>
   );
